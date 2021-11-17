@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Network | Basic usage</title>
+
+        <script type="text/javascript" src="../../../dist/vis.js"></script>
+        <link href="../../../dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+
+        <style type="text/css">
+            #mynetwork {
+                width: 1024px;
+                height: 600px;
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+
+        <p>
+            Playing with edge labels.
+        </p>
+
+        <div id="mynetwork"></div>
+
+        <script type="text/javascript">
+            // create an array with nodes
+            var nodes = new vis.DataSet([
+                {id: 'HX_7502', label: 'HX_7502'},
+                {id: 'LC_S5120_01_A', label: 'LC_S5120_01_A'},
+                {id: 'LC_S5120_02_A', label: 'LC_S5120_02_A'},
+                {id: 'LC_S5120_03_B', label: 'LC_S5120_03_B'},
+                {id: 'LC_S5120_03_A', label: 'LC_S5120_03_A'},
+                {id: 'LC_S5120_04_A', label: 'LC_S5120_04_A'},
+                {id: 'LC_S5120_05_A', label: 'LC_S5120_05_A'},
+            ]);
+            // create an array with edges
+            var edges = new vis.DataSet([
+                {from: 'LC_S5120_02_A', to: 'HX_7502', label: '1G', labelFrom: 'GE1/0/49', labelTo: 'GE2/0/27', arrows: 'from,to'}, {from: 'LC_S5120_05_A', to: 'HX_7502', label: '1G', labelFrom: 'GE1/0/49', labelTo: 'GE2/0/33', arrows: 'from,to'}, {from: 'LC_S5120_03_A', to: 'HX_7502', label: '1G', labelFrom: 'GE1/0/49', labelTo: 'GE2/0/29', arrows: 'from,to'}, {from: 'LC_S5120_04_A', to: 'HX_7502', label: '1G', labelFrom: 'GE1/0/49', labelTo: 'GE2/0/31', arrows: 'from,to'}, {from: 'LC_S5120_01_A', to: 'HX_7502', label: '1G', labelFrom: 'GE1/0/49', labelTo: 'GE2/0/25', arrows: 'from,to'}, {from: 'LC_S5120_03_B', to: 'LC_S5120_02_A', label: '1G', labelFrom: 'GE1/0/8', labelTo: 'GE1/0/23', arrows: 'from,to'},
+            ]);
+            // create a network
+            var container = document.getElementById('mynetwork');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {
+                edges: {
+                    font: {
+                        size: 10, // px
+                    }
+                },
+                layout: {
+                    hierarchical: {
+                        levelSeparation: 150,
+                        nodeSpacing: 250,
+                        treeSpacing: 250,
+                        direction: 'UD', // UD, DU, LR, RL
+                    }
+                }
+            };
+            var network = new vis.Network(container, data, options);
+        </script>
+
+
+    </body
+</html>
