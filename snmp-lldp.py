@@ -227,6 +227,7 @@ def main():
         ip = switch.get('ip')
         # Read lldpLocSysName table
         print(" - Reading device lldpLocSysName table...", file=sys.stderr)
+        print("lldpLocSysName",ip)
         lldpLocSysName = snmp_walk(ip, '1.0.8802.1.1.2.1.3.3', 'str', community=community)
         gLocSysName = ''
         for id, LocSysName in lldpLocSysName.items():
@@ -373,7 +374,7 @@ def main():
 
     for row in rows:
         print(row[0])
-        strnodes = strnodes + "{id: '" + row[0] + "', label: '" + row[0] + "'},"
+        strnodes = strnodes + "{id: '" + row[0] + "', label: '" + row[0] + "'},\n"
 
     print(strnodes)
 
@@ -393,7 +394,7 @@ def main():
     for row in dictLocRem.values():
         print(row)
         stredges = stredges + "{from: '" + row[0] + "', to: '" + row[2] + "', label: '" + "1G" + "', labelFrom: '" + \
-                   row[1] + "', labelTo: '" + row[3] + "', arrows: '" + "from,to" + "'},"
+                   row[1] + "', labelTo: '" + row[3] + "', arrows: '" + "from,to" + "'},\n"
     print(stredges)
     return data
 
