@@ -32,6 +32,7 @@ def snmp_walk(host, oid, format='str', strip_prefix=True, community='public'):
             raise ConnectionError('errorStatus: %s at %s' % (errorStatus.prettyPrint(),
                                                              errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
         else:
+            print(varBinds)
             for x in varBinds:
                 k, v = x
                 if strip_prefix:
@@ -271,7 +272,7 @@ def main():
             con.commit()
 
             print(" - Reading device lldpRemPortId table...", file=sys.stderr)
-            lldpRemPortId = snmp_walk(ip, '1.0.8802.1.1.2.1.4.1.1.7', 'str', community=community)
+            lldpRemPortId = snmp_walk(ip, '1.0.8802.1.1.2.1.4.1.1.7', 'any', community=community)
             for id, RemPortId in lldpRemPortId.items():
                 print('id=', read_id_from_oid_tail(id, with_len=False))
                 print('RemPortId=', RemPortId)
