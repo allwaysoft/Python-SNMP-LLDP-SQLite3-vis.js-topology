@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Network | Basic usage</title>
+
+
+        <script type="text/javascript" src="vis/vis.js"></script>
+        <link href="vis/vis-network.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="nodes.js"></script>
+        <script type="text/javascript" src="edges.js"></script>
+        <style type="text/css">
+            #mynetwork {
+                width: 1024px;
+                height: 768px;
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+
+        <p>
+            Playing with edge labels.
+        </p>
+
+        <div id="mynetwork"></div>
+
+        <script type="text/javascript">
+            // create an array with nodes
+            
+            // create an array with edges
+            
+            // create a network
+            var container = document.getElementById('mynetwork');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {
+                nodes: {
+                    fixed: false
+                },
+                edges: {
+                    smooth: {
+                        //设置两个节点之前的连线的状态
+                        enabled: false //默认是true，设置为false之后，两个节点之前的连线始终为直线，不会出现贝塞尔曲线
+                    },
+                    font: {
+                        size: 10, // px
+                    }
+                },
+                physics: false,
+                interaction: {
+                    dragNodes: true, // do not allow dragging nodes
+                    zoomView: false, // do not allow zooming
+                    dragView: false  // do not allow dragging
+                }
+            };
+            var network = new vis.Network(container, data, options);
+        </script>
+
+
+    </body
+</html>
